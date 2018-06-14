@@ -757,6 +757,12 @@ namespace EntityFramework.Functions
                                     return edmProperty.PrimitiveType.ClrEquivalentType == (Nullable.GetUnderlyingType(clrProperty.PropertyType) ?? clrProperty.PropertyType);
                                 }
 
+                                if (edmProperty.EnumType != null && clrProperty.PropertyType.IsEnum)
+                                {
+                                    var underlyingType = Enum.GetUnderlyingType(clrProperty.PropertyType);
+                                    return edmProperty.EnumType.UnderlyingType.ClrEquivalentType == (underlyingType);
+                                }
+
                                 if (edmProperty.ComplexType != null)
                                 {
                                     // Entity type's property is complex type.
