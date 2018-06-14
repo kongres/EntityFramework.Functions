@@ -46,7 +46,6 @@ namespace EntityFramework.Functions
         }
     }
 
-#if NET40
     internal static class CustomAttributeExtensions
     {
         internal static T GetCustomAttribute<T>(this MemberInfo element) where T : Attribute =>
@@ -67,5 +66,4 @@ namespace EntityFramework.Functions
         internal static IEnumerable<Attribute> GetCustomAttributes(this MemberInfo element, Type attributeType) =>
             Attribute.GetCustomAttributes(element, attributeType);
     }
-#endif
 }

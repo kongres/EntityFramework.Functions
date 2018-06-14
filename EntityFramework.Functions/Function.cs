@@ -1,16 +1,10 @@
 ﻿namespace EntityFramework.Functions
 {
     using System;
-#if NET45
-    using System.Runtime.CompilerServices;
-#endif
 
     public static partial class Function
     {
         public static T CallNotSupported<T>(
-#if NET45
-            [CallerMemberName]
-#endif
             string methodName = null)
         {
             // System.Data.Entity.Strings.ELinq_EdmFunctionDirectCall.
