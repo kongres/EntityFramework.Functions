@@ -301,6 +301,7 @@ namespace Kongrevsky.EntityFramework.Functions
                     ReturnParameters = model.GetModelReturnParameters(methodInfo, functionAttribute),
                     EntitySets = model.GetModelEntitySets(methodInfo, functionAttribute),
                     CommandText = functionAttribute.EntitySql,
+                    Schema = functionAttribute.Schema
                 },
                 null);
             model.ConceptualModel.AddItem(modelFunction);
