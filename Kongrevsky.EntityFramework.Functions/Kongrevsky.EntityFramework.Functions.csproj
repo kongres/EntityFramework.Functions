@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>net471</TargetFramework>
+    <Description>Functions and Procedures for Entity Framework 6</Description>
+    <Copyright>Valikovsky Igor, Dixin Yan</Copyright>
+    <Authors>Valikovsky Igor, Dixin Yan</Authors>
+    <Company>Kongrevsky</Company>
   </PropertyGroup>
 
   <ItemGroup>
