@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit" Version="2.3.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Kongrevsky.EntityFramework.Functions.Tests.Library\Kongrevsky.EntityFramework.Functions.Tests.Library.csproj" />
+    <ProjectReference Include="..\Kongrevsky.EntityFramework.Functions\Kongrevsky.EntityFramework.Functions.csproj" />
+  </ItemGroup>
+
+</Project>
