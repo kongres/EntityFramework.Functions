@@ -1,4 +1,7 @@
-﻿namespace Kongrevsky.EntityFramework.Functions
+﻿// Copyright (c) 2015 Dixin Yan. All rights reserved.
+// Licensed under the MIT License, Version 2.0. See LICENSE in the project root for license information.
+
+namespace Kongrevsky.EntityFramework.Functions
 {
     using System;
     using System.Data.Entity.Core.Metadata.Edm;
