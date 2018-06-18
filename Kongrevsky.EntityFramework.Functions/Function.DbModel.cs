@@ -267,7 +267,7 @@ namespace Kongrevsky.EntityFramework.Functions
             }
         }
 
-        private static void AddModelDefinedFunction(DbModel model, MethodInfo methodInfo, ModelDefinedFunctionAttribute functionAttribute)
+        public static void AddModelDefinedFunction(DbModel model, MethodInfo methodInfo, ModelDefinedFunctionAttribute functionAttribute)
         {
             /*
             <!-- CSDL content -->
@@ -307,7 +307,7 @@ namespace Kongrevsky.EntityFramework.Functions
             model.ConceptualModel.AddItem(modelFunction);
         }
 
-        private static IList<FunctionParameter> GetStoreParameters
+        public static IList<FunctionParameter> GetStoreParameters
             (this DbModel model, MethodInfo methodInfo, FunctionAttribute functionAttribute) => methodInfo
                 .GetParameters()
                 .Select((parameterInfo, index) =>
@@ -351,7 +351,7 @@ namespace Kongrevsky.EntityFramework.Functions
                     })
                 .ToArray();
 
-        private static PrimitiveType GetStoreParameterPrimitiveType(
+        public static PrimitiveType GetStoreParameterPrimitiveType(
             this DbModel model, MethodInfo methodInfo, ParameterInfo parameterInfo, FunctionAttribute functionAttribute)
         {
             // <Parameter Name="PersonID" Type="int" Mode="In" />
@@ -413,7 +413,7 @@ namespace Kongrevsky.EntityFramework.Functions
                 : model.GetStorePrimitiveType(parameterClrType, methodInfo, parameterInfo);
         }
 
-        private static PrimitiveType GetStorePrimitiveType(
+        public static PrimitiveType GetStorePrimitiveType(
             this DbModel model, string storeEdmTypeName, MethodInfo methodInfo, ParameterInfo parameterInfo)
         {
             // targetStoreEdmType = model.ProviderManifest.GetStoreType(TypeUsage.CreateDefaultTypeUsage(primitiveEdmType)).EdmType;
@@ -430,7 +430,7 @@ namespace Kongrevsky.EntityFramework.Functions
             return storePrimitiveType;
         }
 
-        private static PrimitiveType GetStorePrimitiveType(
+        public static PrimitiveType GetStorePrimitiveType(
             this DbModel model, Type clrType, MethodInfo methodInfo, ParameterInfo parameterInfo)
         {
             // targetStoreEdmType = model.ProviderManifest.GetStoreType(TypeUsage.CreateDefaultTypeUsage(primitiveEdmType)).EdmType;
@@ -447,7 +447,7 @@ namespace Kongrevsky.EntityFramework.Functions
             return storePrimitiveType;
         }
 
-        private static IList<FunctionParameter> GetStoreReturnParameters(
+        public static IList<FunctionParameter> GetStoreReturnParameters(
             this DbModel model, MethodInfo methodInfo, FunctionAttribute functionAttribute)
         {
             ParameterInfo returnParameterInfo = methodInfo.ReturnParameter;
@@ -547,7 +547,7 @@ namespace Kongrevsky.EntityFramework.Functions
                 };
         }
 
-        private static IList<FunctionParameter> GetModelParameters(
+        public static IList<FunctionParameter> GetModelParameters(
             this DbModel model, MethodInfo methodInfo, EdmFunction storeFunction)
         {
             ParameterInfo[] parameters = methodInfo.GetParameters().ToArray();
@@ -564,7 +564,7 @@ namespace Kongrevsky.EntityFramework.Functions
                 .ToArray();
         }
 
-        private static IList<FunctionParameter> GetModelParametersForModelDefinedFunction(
+        public static IList<FunctionParameter> GetModelParametersForModelDefinedFunction(
             this DbModel model, MethodInfo methodInfo)
         {
             ParameterInfo[] parameters = methodInfo.GetParameters().ToArray();
@@ -576,7 +576,7 @@ namespace Kongrevsky.EntityFramework.Functions
                 .ToArray();
         }
 
-        private static IList<FunctionParameter> GetModelReturnParameters(
+        public static IList<FunctionParameter> GetModelReturnParameters(
             this DbModel model, MethodInfo methodInfo, FunctionAttribute functionAttribute)
         {
             ParameterInfo returnParameterInfo = methodInfo.ReturnParameter;
@@ -639,7 +639,7 @@ namespace Kongrevsky.EntityFramework.Functions
                 .ToArray();
         }
 
-        private static PrimitiveType GetModelParameterPrimitiveType(
+        public static PrimitiveType GetModelParameterPrimitiveType(
             this DbModel model, MethodInfo methodInfo, ParameterInfo parameterInfo)
         {
             // <Parameter Name="PersonID" Mode="In" Type="Int32" />
@@ -671,7 +671,7 @@ namespace Kongrevsky.EntityFramework.Functions
             return model.GetModelPrimitiveType(parameterClrType, methodInfo);
         }
 
-        private static PrimitiveType GetModelPrimitiveType(this DbModel model, Type clrType, MethodInfo methodInfo)
+        public static PrimitiveType GetModelPrimitiveType(this DbModel model, Type clrType, MethodInfo methodInfo)
         {
             // Parameter and return parameter can be Nullable<T>.
             // Return parameter can be IQueryable<T>, ObjectResult<T>.
@@ -714,7 +714,7 @@ namespace Kongrevsky.EntityFramework.Functions
             return modelPrimitiveType;
         }
 
-        private static StructuralType GetModelStructualType(this DbModel model, Type clrType, MethodInfo methodInfo)
+        public static StructuralType GetModelStructualType(this DbModel model, Type clrType, MethodInfo methodInfo)
         {
             EntityType modelEntityType = model.GetModelEntityType(clrType, methodInfo);
             if (modelEntityType != null)
@@ -735,7 +735,7 @@ namespace Kongrevsky.EntityFramework.Functions
             };
         }
 
-        private static EntityType GetModelEntityType(this DbModel model, Type clrType, MethodInfo methodInfo)
+        public static EntityType GetModelEntityType(this DbModel model, Type clrType, MethodInfo methodInfo)
         {
             PropertyInfo[] clrProperties = clrType.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetProperty);
             EntityType[] entityTypes = model
@@ -786,7 +786,7 @@ namespace Kongrevsky.EntityFramework.Functions
             return entityTypes.SingleOrDefault();
         }
 
-        private static ComplexType GetModelComplexType(this DbModel model, Type clrType, MethodInfo methodInfo)
+        public static ComplexType GetModelComplexType(this DbModel model, Type clrType, MethodInfo methodInfo)
         {
             // Cannot add missing complex type instantly. The following code does not work.
             // if (Attribute.IsDefined(clrType, typeof(ComplexTypeAttribute)))
@@ -843,7 +843,7 @@ namespace Kongrevsky.EntityFramework.Functions
             return modelComplexTypes.SingleOrDefault();
         }
 
-        private static IList<EntitySet> GetModelEntitySets(this DbModel model, MethodInfo methodInfo, FunctionAttribute functionAttribute)
+        public static IList<EntitySet> GetModelEntitySets(this DbModel model, MethodInfo methodInfo, FunctionAttribute functionAttribute)
         {
             ParameterInfo returnParameterInfo = methodInfo.ReturnParameter;
             if (returnParameterInfo == null || returnParameterInfo.ParameterType == typeof(void))
